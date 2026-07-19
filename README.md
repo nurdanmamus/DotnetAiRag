@@ -32,6 +32,18 @@ Question ──► embed ──► vector search (top 10 nearest chunks)
 | `DotnetAiRag.AppHost` | .NET Aspire orchestrator (Postgres container + API) |
 | `DotnetAiRag.ServiceDefaults` | Shared Aspire defaults |
 
+## Tech stack
+
+- **.NET 10** minimal API + **.NET Aspire** (orchestration, runs the Postgres container)
+- **Microsoft.Extensions.AI** — provider-agnostic AI abstractions (`IChatClient`, `IEmbeddingGenerator`), plus midd
+leware like `UseFunctionInvocation` / `UseLogging`. The app talks to these interfaces, so the AI provider can be sw
+apped by changing only the registration.
+- **Microsoft.Extensions.AI.OpenAI** + **OpenAI** SDK — OpenAI as the underlying provider (`gpt-4o`, `text-embeddin
+g-3-small`)
+- **PostgreSQL + pgvector** via EF Core (Npgsql) — chunk embedding storage & similarity search
+- **UglyToad.PdfPig** — PDF text extraction
+
+
 ## Requirements
 
 - .NET 10 SDK
