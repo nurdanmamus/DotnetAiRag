@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="App.API/App.API.csproj" />
+  <Project Path="DotnetAiRag.AppHost/DotnetAiRag.AppHost.csproj" />
+  <Project Path="DotnetAiRag.ServiceDefaults/DotnetAiRag.ServiceDefaults.csproj" />
+</Solution>

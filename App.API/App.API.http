@@ -1,0 +1,30 @@
+# Set @host to the app-api address shown in the Aspire dashboard.
+@host = http://localhost:5086
+
+### 1) Upload a PDF (multipart). Change the path to a real .pdf on your machine.
+POST {{host}}/api/documents/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+Content-Type: application/pdf
+
+< /Users/nurdanmamus/Desktop/sample.pdf
+------WebKitFormBoundary--
+
+### 2) Ask a question (RAG) — searches all documents
+POST {{host}}/api/chat/ask
+Content-Type: application/json
+
+{
+  "question": "Bu dökümanların ana konusu nedir?"
+}
+
+### 3) Ask a question limited to one document (by its Id)
+POST {{host}}/api/chat/ask
+Content-Type: application/json
+
+{
+  "question": "Ödeme koşulları nelerdir?",
+  "documentId": 1
+}
